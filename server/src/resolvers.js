@@ -6,7 +6,7 @@ const nodeMailer = require('nodemailer')
 const mongoose = require('mongoose')
 const ObjectId = mongoose.Types.ObjectId
 
-const { User, Folder, Project, Team, Group, Record, Task, Comment } = require('./models')
+const { User, Folder, Team, Group, Record, Task } = require('./models')
 const { getUserId } = require('./utils')
 const { welcomeEmail, invitationEmail, notificationNewUser } = require('./emails')
 
@@ -35,7 +35,6 @@ async function folderCommon(context, parent, name, shareWith) {
 }
 
 async function deleteSubTasks(id) {
-  await Comment.deleteMany({'parent.item': id})
   const tasks = await Task.find({parent: id})
   for (const task of tasks) {
     await deleteSubTasks(task.id)
@@ -49,7 +48,6 @@ function populateTask(promise) {
     .populate('parent', 'name')
     .populate('assignees', 'name email firstname lastname avatarColor')
     .populate('creator', 'name email firstname lastname')
-    .populate('shareWith')
 }
 
 function randomChoice(arr) {

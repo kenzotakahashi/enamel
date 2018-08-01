@@ -25,10 +25,6 @@ module.exports.Task = buildModel('Task', {
   folders: [{ type: ObjectId, ref: 'Folder' }],
   parent: { type: ObjectId, ref: 'Task' },
   assignees: [{ type: ObjectId, ref: 'User' }],
-  shareWith: [{
-    kind: String,
-    item: { type: ObjectId, refPath: 'shareWith.kind' }
-  }],
   name: String,
   description: {
     type: String,

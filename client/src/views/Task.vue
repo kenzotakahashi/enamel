@@ -15,8 +15,6 @@
 
       <DescriptionField :model="task" kind="task"></DescriptionField>
     </div>
-<!--     <Comments :comments="getComments"></Comments>
-    <CommentBox :parent="task.id" class="stick-bottom"></CommentBox> -->
 
     <Record v-if="activeWidget === 'record-form'" :task="task" :record="getRecord"></Record>
     <DateRangePicker v-if="activeWidget === 'daterange'" :task="task"></DateRangePicker>
@@ -36,8 +34,6 @@ import TaskForm from '@/components/task/TaskForm'
 import DescriptionField from '@/components/DescriptionField'
 import DateRangePicker from '@/components/DateRangePicker'
 import Record from '@/components/Record'
-// import Comments from '@/components/Comments'
-// import CommentBox from '@/components/CommentBox'
 
 export default {
   components: {
@@ -49,8 +45,6 @@ export default {
     DescriptionField,
     DateRangePicker,
     Record,
-    // Comments,
-    // CommentBox
   },
   props: ['taskId'],
   data() {
@@ -111,15 +105,6 @@ export default {
       }
     },
     getUsers: GetUsers
-    // getComments: {
-    //   query: GetComments,
-    //   variables() {
-    //     return { parent: this.task.id }
-    //   },
-    //   skip() {
-    //     return !this.task.id
-    //   },
-    // },
   },
   methods: {
   }

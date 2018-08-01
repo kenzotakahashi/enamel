@@ -2,16 +2,15 @@ scalar Date
 scalar JSON
 
 type Query {
-  getUser(id: String): User
   getUsers: [User]
+  getUser(id: String): User
   getTeam: Team
-  getGroup: Group
   getGroups: [Group]
+  getGroup: Group
   getFolders(parent: String): [Folder]
   getFolder(id: String!): Folder
   getTasks(folder: String, parent: String): [Task]
   getTask(id: String!): Task
-  getComments(parent: String): [Comment]
   getRecord(id: String, task: String, date: String): Record
 }
 
@@ -23,15 +22,12 @@ type Mutation {
   login(email: String!, password: String!): AuthPayload!
   
   createFolder(parent: String, name: String!, shareWith: [ShareInput]): Folder
-  createProject(parent: String, name: String!, owners: [String],
-                startDate: Date, finishDate: Date, shareWith: [ShareInput]): Folder
   updateFolder(id: String!, input: FolderInput): Folder
   deleteFolder(id: String!): Boolean
   
   createTask(folder: String, parent: String, name: String!): Task
   updateTask(id: String!, input: TaskInput): Task
   deleteTask(id: String!): Boolean
-  createComment(body: String, parent: ShareInput): Comment
   
   createGroup(name: String, initials: String, avatarColor: String, users: [String]): Group
   addUsersToGroup(id: String!, users: [String]): Group
@@ -70,23 +66,10 @@ type Folder {
   shareWith: [JSON]
 }
 
-type Project {
-  id: String
-  name: String
-  parent: String
-  description: String
-  shareWith: [JSON]
-  owners: [User]
-  startDate: Date
-  finishDate: Date
-  status: String
-}
-
 type Task {
   id: String
   folders: [Folder]
   assignees: [User]
-  shareWith: [JSON]
   name: String
   description: String
   parent: User
@@ -96,15 +79,6 @@ type Task {
   duration: Int
   importance: String
   status: String
-  createdAt: Date
-}
-
-type Comment {
-  id: String
-  body: String
-  kind: String
-  user: User
-  parent: JSON
   createdAt: Date
 }
 

@@ -23,7 +23,6 @@ fragment TaskFields on Task {
     lastname
   }
   description
-  shareWith
   startDate
   finishDate
   duration
@@ -32,35 +31,12 @@ fragment TaskFields on Task {
   createdAt
 }
 
-fragment CommentFields on Comment {
-  id
-  body
-  user {
-    id
-    name
-    avatarColor
-  }
-}
-
 fragment FolderFields on Folder {
   id
   name
   parent
   description
   shareWith
-}
-
-fragment ProjectFields on Project {
-  id
-  name
-  shareWith
-  owners {
-    id
-    name
-  }
-  startDate
-  finishDate
-  status
 }
 
 fragment UserFields on User {
@@ -145,14 +121,6 @@ mutation DeleteTask($id: String!) {
 
 mutation CreateFolder($parent: String, $name: String!, $shareWith: [ShareInput]) {
   createFolder(parent: $parent, name: $name, shareWith: $shareWith) {
-    ...FolderFields
-  }
-}
-
-mutation CreateProject($parent: String, $name: String!, $shareWith: [ShareInput],
-                       $owners: [String], $startDate: Date, $finishDate: Date) {
-  createProject(parent: $parent, name: $name, shareWith: $shareWith,
-                owners: $owners, startDate: $startDate, finishDate: $finishDate) {
     ...FolderFields
   }
 }
@@ -244,14 +212,7 @@ query GetTask($id: String!) {
   getTask(id: $id) { ...TaskFields }
 }
 
-query GetComments($parent: String) {
-  getComments(parent: $parent) { ...CommentFields }
-}
-
 query GetRecord($id: String, $task: String, $date: String) {
   getRecord(id: $id, task: $task, date: $date) { ...RecordFields }
 }
 
-mutation CreateComment($body: String, $parent: ShareInput) {
-  createComment(body: $body, parent: $parent) { ...CommentFields }
-}
