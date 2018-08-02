@@ -1,7 +1,7 @@
 module.exports = {
   lintOnSave: false,
   devServer: {
-    port: 8001,
+    port: 8002,
     proxy: 'http://localhost:5500'
   },
   pwa: {
