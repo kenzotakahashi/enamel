@@ -1,0 +1,495 @@
+body {
+  color: #eff2f4;
+  margin: 0;
+  background-color: #4A4090;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Open sans","lucida grande","Segoe UI",arial,verdana,tahoma,"Hiragino Kaku Gothic ProN",
+              "Osaka","Meiryo UI","Yu Gothic UI",sans-serif;
+}
+
+.white {
+  color: $black;
+  background: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 8px 0;
+}
+
+ul, li {
+  list-style-type: none;
+  margin: 0;
+}
+
+textarea {
+  outline: none;
+  border: none;
+  resize: none;
+  font-size: inherit;
+}
+
+input {
+  outline: none;
+  border: none;
+  font-size: inherit;
+}
+
+button {
+  border: none;
+  background: none;
+  box-shadow: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  border: 1px solid;
+  border-radius: 2px;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  user-select: none;
+  justify-content: center;
+}
+
+a, a:visited, a:hover, a:active, a:focus {
+  color: inherit;
+  text-decoration: none;
+  border: none;
+  box-shadow: none;
+}
+
+.error {
+  color: #FF576F;
+}
+
+a.link {
+  padding: 0 10px;
+  font-weight: 700;
+  color: rgb(77, 208, 225);
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.container {
+  box-sizing: border-box;
+  display: flex;
+  position: absolute;
+  left: 0px;
+  top: 52px;
+}
+
+.container-center {
+  max-width: 400px;
+  margin: auto;
+}
+
+.header-title {
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.black-text-button, .black-text-button:focus {
+  color: rgba(0, 0, 0, 0.9)
+}
+
+.black-text-button:hover {
+  color: $blue-hover;
+}
+
+.el-header {
+  padding: 0;
+}
+
+.el-button--text {
+  font-weight: 300;
+}
+
+.el-table__row {
+  cursor: pointer;
+}
+
+.el-table__row:hover .close-button.hidden {
+  visibility: visible;
+}
+
+.fa-angle-down, .fa-angle-right {
+  font-size: 12px;
+}
+
+.card {
+  border-radius: 2px;
+  margin: 0 5px;
+}
+
+
+input {
+  font-size: inherit;
+  vertical-align: -webkit-baseline-middle;
+}
+
+input.no-outline {
+  outline: none;
+  border: none;
+  width: 100%;
+}
+
+.small-text {
+  color: rgba(0,0,0,.56);
+  font-size: 11px;
+}
+
+ul.tree {
+  padding-left: 1em;
+  line-height: 1.5em;
+}
+
+.folder {
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: .325px;
+}
+
+.tree-root {
+  position: relative;
+}
+
+.teamname {
+  color: #f9fbfd;
+  font-weight: 600;
+}
+
+.circle {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #f9fbfd;
+  border-radius: 50%;
+  margin: 12px 13px;
+}
+
+.tree-item {
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+  line-height: 30px;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.fold-button {
+  width: 18px;
+  margin: 0 9px;
+  z-index: 5;
+  text-align: center;
+}
+
+.fold-button:hover {
+  background-color: $hover-inverse;
+}
+
+.fold-button.active:hover {
+  background-color: rgba(255,255,255,.1);
+}
+
+.tree-plate {
+  display: flex;
+  position: static;
+  width: 100%;
+  height: auto;
+}
+
+.tree-plate:before {
+  border-radius: 0 3px 3px 0;
+  /*background-color: #48f;*/
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0px;
+  height: 30px;
+  z-index: -1;  
+}
+
+.tree-plate:hover:before {
+  background-color: $hover-inverse;
+}
+
+.tree-plate.active:before {
+  background-color: #48f;
+}
+
+.no-select-color::-moz-selection {
+  background: none;
+}
+.no-select-color::selection {
+  background: none;
+}
+
+.comment-box {
+  color: rgba(0,0,0,.56);
+  padding: 12px;
+  border-top: 1px solid;
+  border-color: rgba(0,0,0,.16);
+  position: relative;
+  bottom: 0;
+  left: 0;
+}
+
+/* ========= dropdown ============*/
+
+.dropdown {
+  // position: relative;
+  overflow: hidden;
+  /*display: inline-block;*/
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: #fff;
+  padding: 6px 0;
+  min-width: 160px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.16), 0 0 1px 0 rgba(0, 0, 0, 0.16);
+  z-index: 10000;
+  font-size: 14px;
+}
+
+.tree-plate > .dropdown-content {
+  top: 30px;
+}
+
+.dropdown-content.right {
+  right: 0;
+}
+
+.dropdown-content.left {
+  left: 0;
+}
+
+.dropdown-content div {
+  display: flex;
+  cursor: pointer;
+  line-height: 19px;
+  color: black;
+  padding: 5px 16px;
+  text-decoration: none;
+}
+
+.dropdown-content div:hover {
+  background-color: $hover;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* ========= modal ============*/
+
+.modal-mask {
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(39, 65, 90, 0.85);
+  display: table;
+  transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+}
+
+.modal-container > .close-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  color: black;
+  top: 0;
+  right: 0;
+  opacity: .7;
+}
+
+.modal-header h3 {
+  margin-top: 0;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-default-button {
+  float: right;
+}
+
+/* ========= tooltip ============*/
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltip-content {
+  box-sizing: border-box;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.16), 0 0 1px 0 rgba(0, 0, 0, 0.16);
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 10000;
+}
+
+.tooltip .tooltip-content.top {
+  bottom: 50px;  
+}
+
+.tooltip .tooltip-content.bottom {
+  top: 30px;  
+}
+
+.tooltip .tooltip-content.top::after {
+  content: " ";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+}
+
+.contact-picker-item {
+  box-sizing: border-box;
+  cursor: pointer;
+  :hover {
+    background-color: $hover;
+  }
+}
+
+.group-list-item {
+  box-sizing: border-box;
+  height: 32px;
+  display: flex;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.group-list-item:hover {
+  background-color: $hover;  
+}
+
+.group-list-item > span {
+  display: flex;
+  align-items: center;
+}
+
+
+.picker-item {
+  display: block;
+  height: 48px;
+  padding: 6px 16px 6px 24px;
+  box-sizing: border-box;
+}
+
+.picker-item .item {
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.picker-item .name {
+  font-size: 14px;
+  overflow: hidden;
+  line-height: 1.54;
+  text-align: left;
+}
+
+.picker-item .email {
+  color: #a5a5a5;
+  font-size: 12px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.picker-avatar {
+  margin-right: 8px;
+}
+
+.cross-wrapper {
+  padding: 6px 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.cross {
+  width: 13px;
+  height: 13px;
+  background: linear-gradient(to bottom, transparent 48%, 
+                                         rgba(0, 0, 0, 0.9) 48%, 
+                                         rgba(0, 0, 0, 0.9) 52%,  
+                                         transparent 52%),
+              linear-gradient(to right, transparent 48%, 
+                                         rgba(0, 0, 0, 0.9) 48%, 
+                                         rgba(0, 0, 0, 0.9) 52%,  
+                                         transparent 52%),
+}
+
+.user-container {
+  display: flex;
+}
+
+.group-view {
+  padding: 12px 0;
+  width: 174px;
+  left: 50%; 
+  margin-left: -87px;
+}
+
+.popover-menu {
+  padding: 0;
+}
+
+.menu-item {
+  font-size: 14px;
+  cursor: pointer;
+  display: block;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 42px 0 24px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.menu-item:hover {
+  background-color: $hover;
+}
+
