@@ -18,7 +18,7 @@
             <el-input v-model="form.email" placeholder="Email"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click.once="capture">Create my enamel account</el-button>
+            <el-button type="primary" @click="capture">Create my enamel account</el-button>
           </el-form-item>
         </el-form>
 
