@@ -1,10 +1,21 @@
-body {
-  color: #eff2f4;
-  margin: 0;
-  background-color: #4A4090;
-  -webkit-font-smoothing: antialiased;
+body, pre, textarea {
   font-family: "Open sans","lucida grande","Segoe UI",arial,verdana,tahoma,"Hiragino Kaku Gothic ProN",
               "Osaka","Meiryo UI","Yu Gothic UI",sans-serif;
+  margin: 0;
+}
+
+pre {
+  white-space: pre-wrap;       /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  color: #eff2f4;
+  background-color: $theme-purple;
 }
 
 .white {
@@ -141,7 +152,7 @@ input.no-outline {
   font-size: 11px;
 }
 
-ul.tree {
+.tree {
   padding-left: 1em;
   line-height: 1.5em;
 }
@@ -149,12 +160,14 @@ ul.tree {
 .folder {
   font-size: 13px;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
   letter-spacing: .325px;
 }
 
 .tree-root {
   position: relative;
+  z-index: 10;
 }
 
 .teamname {
@@ -198,7 +211,7 @@ ul.tree {
 .tree-plate {
   display: flex;
   position: static;
-  width: 100%;
+  width: 90%;
   height: auto;
 }
 
@@ -226,16 +239,6 @@ ul.tree {
 }
 .no-select-color::selection {
   background: none;
-}
-
-.comment-box {
-  color: rgba(0,0,0,.56);
-  padding: 12px;
-  border-top: 1px solid;
-  border-color: rgba(0,0,0,.16);
-  position: relative;
-  bottom: 0;
-  left: 0;
 }
 
 /* ========= dropdown ============*/
