@@ -16,7 +16,7 @@ const transporter = nodeMailer.createTransport({
     }
 })
 
-const { User, Team } = require('./models')
+const { User, Team, Folder } = require('./models')
 
 const JWT_SECRET = process.env.JWT_SECRET
 
@@ -35,6 +35,25 @@ const resolvers = {
       const userId = getUserId(context)
       const user = await User.findById(userId)
       return await Team.findById(user.team)
+    },
+    async getFolders (_, {parent}, context) {
+      const userId = getUserId(context)
+      if (parent) {
+        return await Folder.find({parent})
+      } else {
+        const user = await User.findById(userId)
+        const groups = await Group.find({users: ObjectId(userId)}, '_id')
+        const ids = groups.map(o => o._id).concat(
+          ['External User', 'Collaborator'].includes(user.role)
+          ? [ObjectId(userId)]
+          : [ObjectId(userId), user.team]
+        )
+        return await Folder.find({ 'shareWith.item': ids }).populate('shareWith')
+      }
+    },
+    async getFolder (_, {id}, context) {
+      const userId = getUserId(context)
+      return await Folder.findById(id).populate('shareWith')
     },
   },
   Mutation: {
