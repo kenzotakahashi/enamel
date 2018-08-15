@@ -3,6 +3,9 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const moment = require('moment')
 const nodeMailer = require('nodemailer')
+const mongoose = require('mongoose')
+const ObjectId = mongoose.Types.ObjectId
+
 const { welcomeEmail } = require('./emails')
 const { getUserId } = require('./utils')
 
@@ -16,7 +19,7 @@ const transporter = nodeMailer.createTransport({
     }
 })
 
-const { User, Team, Folder } = require('./models')
+const { User, Team, Folder, Group } = require('./models')
 
 const JWT_SECRET = process.env.JWT_SECRET
 

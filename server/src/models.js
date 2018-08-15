@@ -44,3 +44,11 @@ module.exports.User = buildModel('User', {
   role: String,
   status: String
 })
+
+module.exports.Group = buildModel('Group', {
+  team: { type: ObjectId, ref: 'Team' },
+  name: String,
+  initials: String,
+  avatarColor: String,
+  users: [{ type: ObjectId, ref: 'User' }],
+})
