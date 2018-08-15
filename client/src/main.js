@@ -34,9 +34,20 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (networkError) console.log(`[Network error]: ${networkError}`)
 })
 
+const authMiddleware = new ApolloLink((operation, forward) => {
+  const token = localStorage.getItem('user-token')
+  operation.setContext({
+    headers: {
+      authorization: token ? `Bearer ${token}` : null
+    }
+  })
+  return forward(operation)
+})
+
 const client = new ApolloClient({
   link: ApolloLink.from([
     errorLink,
+    authMiddleware,
     httpLink
   ]),
   cache,

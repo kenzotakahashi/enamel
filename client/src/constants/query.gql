@@ -24,3 +24,10 @@ mutation Login($email: String!, $password: String!) {
     }
   }
 }
+
+query GetTeam {
+  getTeam {
+    id
+    name
+  }
+}

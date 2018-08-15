@@ -49,6 +49,8 @@ export default {
   },
   methods: {
     async login() {
+      this.$apollo.provider.clients.defaultClient.cache.reset()
+
       const { email, password } = this.form
       if (email && password) {
         this.$apollo.mutate({
@@ -59,8 +61,7 @@ export default {
           const id = login.user.id
           const token = login.token
           this.saveUserData(id, token)
-          // this.$router.push({name: 'workspace'})
-          console.log('success')
+          this.$router.push({name: 'workspace'})
         }).catch((error) => {
           this.error = 'Invalid email or password'
           console.log(error)

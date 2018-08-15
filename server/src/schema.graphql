@@ -1,7 +1,7 @@
 scalar Date
 
 type Query {
-  test: String
+  getTeam: Team
 }
 
 type Mutation {
@@ -27,4 +27,9 @@ type User {
 type AuthPayload {
   token: String!
   user: User!
+}
+
+type Team {
+  id: String
+  name: String
 }

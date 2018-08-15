@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 const moment = require('moment')
 const nodeMailer = require('nodemailer')
 const { welcomeEmail } = require('./emails')
+const { getUserId } = require('./utils')
 
 const transporter = nodeMailer.createTransport({
     host: 'smtp.gmail.com',
@@ -30,9 +31,11 @@ const avatarColors = [
 
 const resolvers = {
   Query: {
-		test (_, args, context) {
-			return 'Hello World!!'
-		}
+    async getTeam (_, args, context) {
+      const userId = getUserId(context)
+      const user = await User.findById(userId)
+      return await Team.findById(user.team)
+    },
   },
   Mutation: {
     async captureEmail (_, {email}) {
