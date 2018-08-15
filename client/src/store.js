@@ -5,12 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-
+    userId: localStorage.getItem('user-id'),
+    activeWidget: null,
   },
   mutations: {
-
-  },
-  actions: {
-
+    changeActiveWidget(state, key) {
+      state.activeWidget = state.activeWidget === key ? null : key
+    }
   }
 })

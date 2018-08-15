@@ -15,6 +15,10 @@ import store from './store'
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/css/style.scss'
 
+import PlusButton from '@/components/icons/PlusButton.vue'
+
+Vue.component('plus-button', PlusButton)
+
 Vue.use(ElementUI)
 
 Vue.config.productionTip = false

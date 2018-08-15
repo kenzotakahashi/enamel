@@ -11,6 +11,7 @@ type Mutation {
   captureEmail(email: String!): User
   signup(id: String!, firstname: String!, lastname: String!, password: String!): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
+  createFolder(parent: String, name: String!): Folder
 }
 
 type User {

@@ -47,3 +47,9 @@ query GetFolders($parent: String) {
 query GetFolder($id: String!) {
   getFolder(id: $id) { ...FolderFields }
 }
+
+mutation CreateFolder($parent: String, $name: String!) {
+  createFolder(parent: $parent, name: $name) {
+    ...FolderFields
+  }
+}

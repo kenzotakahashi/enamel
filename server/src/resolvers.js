@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const moment = require('moment')
 const nodeMailer = require('nodemailer')
+const mongoose = require('mongoose')
+const ObjectId = mongoose.Types.ObjectId
 const { welcomeEmail } = require('./emails')
 const { getUserId } = require('./utils')
 
@@ -16,7 +18,7 @@ const transporter = nodeMailer.createTransport({
     }
 })
 
-const { User, Team, Folder } = require('./models')
+const { User, Team, Folder, Group } = require('./models')
 
 const JWT_SECRET = process.env.JWT_SECRET
 
@@ -110,6 +112,18 @@ const resolvers = {
       const token = jwt.sign({id: user.id, email}, JWT_SECRET)
       return {token, user}
     },
+    async createFolder(_, {parent, name}, context) {
+      const userId = getUserId(context)
+      const folder = await Folder.create({
+        name,
+        parent: parent || undefined,
+        shareWith: parent ? [] : [{
+          kind: 'Team',
+          item: (await User.findById(userId)).team
+        }]
+      })
+      return await Folder.findById(folder.id).populate('shareWith.item')
+    }
   },
   Date: new GraphQLScalarType({
     name: 'Date',
