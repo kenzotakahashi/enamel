@@ -12,6 +12,19 @@ type Mutation {
   signup(id: String!, firstname: String!, lastname: String!, password: String!): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
   createFolder(parent: String, name: String!): Folder
+  updateFolder(id: String!, input: FolderInput): Folder
+}
+
+input FolderInput {
+  name: String
+  parent: String
+  description: String
+  shareWith: [ShareInput]
+}
+
+input ShareInput {
+  kind: String
+  item: String
 }
 
 type User {

@@ -123,7 +123,15 @@ const resolvers = {
         }]
       })
       return await Folder.findById(folder.id).populate('shareWith.item')
-    }
+    },
+    async updateFolder(_, {id, input}, context) {
+      const userId = getUserId(context)
+      return await Folder.findOneAndUpdate(
+        { _id: id },
+        { $set: input },
+        { new: true }
+      ).populate('shareWith')
+    },
   },
   Date: new GraphQLScalarType({
     name: 'Date',
