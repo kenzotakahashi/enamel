@@ -7,7 +7,7 @@
 
         <el-form :model="form" @submit.native.prevent="createFolder">
           <el-input type="text" name="foldername" ref="foldername" v-model="form.name"
-            placeholder="folder name" :autofocus="true" @keyup.esc="$emit('close')">
+            placeholder="folder name" @keyup.esc="$emit('close')">
           </el-input>
         </el-form>
 

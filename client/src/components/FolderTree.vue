@@ -12,23 +12,23 @@
         <span class="folder no-select-color">{{ model.name }}</span>
 
         <div class="dropdown-content left" v-show="activeWidget === `folder${model.id}`">
-          <div @click="openModal('folder')">Add Folder</div>
+          <div @click="openModal">Add Folder</div>
           <!-- <div @click="deleteFolder">Delete</div> -->
         </div>
       </div>
     </div>
 
     <ul class="tree" v-show="open" v-if="isFolder">
-      <FolderTree
+      <tree
         v-for="folder in getFolders"
         :key="folder.id"
         :model="folder"
         @open="openArrow"
       >
-      </FolderTree>
+      </tree>
     </ul>
 
-    <FolderForm v-if="showModal" :config="{}" @close="showModal = false"></FolderForm>
+    <FolderForm v-if="showModal" :config="modalConfig" @close="showModal = false"></FolderForm>
   </li>
 </template>
 
@@ -41,7 +41,7 @@ import { GetFolders } from '../constants/query.gql'
 export default {
   name: 'tree',
   components: {
-    FolderTree,
+    'tree': FolderTree,
     FolderForm
   },
   props: ['model', 'team'],
@@ -49,6 +49,7 @@ export default {
     return {
       open: false,
       showModal: false,
+      modalConfig: {},
       getFolders: []
     }
   },
@@ -87,7 +88,6 @@ export default {
       this.$store.commit('changeActiveWidget', null)
       this.showModal = true
       this.modalConfig = {
-        mode,
         parent: this.model.id
       }
     },
@@ -123,8 +123,5 @@ export default {
     //   })
     // },
   }
-};
+}
 </script>
-
-<style>
-</style>
