@@ -13,6 +13,7 @@ type Mutation {
   login(email: String!, password: String!): AuthPayload!
   createFolder(parent: String, name: String!): Folder
   updateFolder(id: String!, input: FolderInput): Folder
+  deleteFolder(id: String!): Boolean
 }
 
 input FolderInput {

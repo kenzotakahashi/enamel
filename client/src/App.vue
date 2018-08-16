@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" @click="$store.commit('changeActiveWidget', null)">
     <router-view></router-view>
   </div>
 </template>
