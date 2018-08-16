@@ -26,7 +26,15 @@ Vue.config.productionTip = false
 const uri = `${process.env.VUE_APP_URI}/graphql`
 const httpLink = new HttpLink({uri})
 
-const cache = new InMemoryCache({})
+const cache = new InMemoryCache({
+  cacheRedirects: {
+    Query: {
+      getFolder: (_, args, { getCacheKey }) => {
+        return getCacheKey({ __typename: 'Folder', id: args.id })
+      },
+    },
+  }
+})
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
